@@ -7,7 +7,8 @@ import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import {EmailIcon} from '@chakra-ui/icons'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState({});
+  // const data  = awaitfetch('http://localhost:3000/api/user/createuser')
 
   return (
     <>
