@@ -3,39 +3,37 @@ import {Router} from 'express'
 import pg from 'pg'
 import { Sequelize } from 'sequelize';
 import 'dotenv/config'
-
-
-
-const user = process.env.P_USER;
-const user_pass = process.env.P_PASS;
-const db_name = process.env.DB_NAME;
-console.log(user, user_pass, db_name);
-
-const sequelize = new Sequelize(db_name, user, user_pass,{
-  dialect:'postgres'
-})
-
-try {
-  await sequelize.authenticate();
-  console.log('Connection has been established successfully.');
-} catch (error) {
-  console.error('Unable to connect to the database:', error);
-}
+import User from '../models/User.js';
+import sequelize from '../config/db.js';
 
 
 const router = Router();
 
 
 // /api/user/createuser register user to pg db
-router.get('/getuser',(req,res) =>{
+router.get('/getuser',async (req,res) =>{
+  try {
     console.log('get user req endpoint');
-    return res.status(200).send('user info')
+    const searched_user = await User.findOne({where:{email:'asdf@gmail.com'}})
+    return res.status(200).send(searched_user)
+  } catch (error) {
+    console.log(error);
+  }
+    
 })
 
-router.post('/createuser',(req,res) =>{
-  console.log('create user req endpoint');
-  return res.status(200).send('new user created')
+router.post('/createuser',async(req,res) =>{
+  // console.log('create user req endpoint');
+  try {
+    const info = req.body
+    const newUser = await User.create({...info})
+    return res.status(200).send('new user created')
+  } catch (error) {
+    console.log(error);
+  }
+
 })
+
 
 
 export default router;
