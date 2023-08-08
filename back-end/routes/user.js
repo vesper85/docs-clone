@@ -2,24 +2,18 @@
 import {Router} from 'express'
 import pg from 'pg'
 import { Sequelize } from 'sequelize';
+import 'dotenv/config'
 
-const sequelize = new Sequelize('docs_store', 'postgres', 'qwerty',{
+
+
+const user = process.env.P_USER;
+const user_pass = process.env.P_PASS;
+const db_name = process.env.DB_NAME;
+console.log(user, user_pass, db_name);
+
+const sequelize = new Sequelize(db_name, user, user_pass,{
   dialect:'postgres'
 })
-
-// const client = new pg.Client({
-//     port: 5432,
-//     database: 'docs_store',
-//     user: 'postgres',
-//     password: 'qwerty',
-//   });
-
-// const text = 'INSERT INTO user(name, password) VALUES($1, $2) RETURNING *'
-// const values = ['brianc', '13579']
-
-
-// const result = await client.query('SELECT * from d_user')
-// console.log(result)
 
 try {
   await sequelize.authenticate();
@@ -27,6 +21,7 @@ try {
 } catch (error) {
   console.error('Unable to connect to the database:', error);
 }
+
 
 const router = Router();
 
