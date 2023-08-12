@@ -10,12 +10,27 @@ import sequelize from '../config/db.js';
 const router = Router();
 
 
-// /api/user/createuser register user to pg db
+// /api/user/getuser register user to pg db
 router.get('/getuser',async (req,res) =>{
   try {
-    console.log('get user req endpoint');
-    const searched_user = await User.findOne({where:{email:'asdf@gmail.com'}})
-    return res.status(200).send(searched_user)
+    console.log(req.header('user'));
+    // console.log('get user req endpoint');
+    // const searched_user = await User.findOne({where:{email:}})
+    return res.status(200).json(req.header('user'))
+  } catch (error) {
+    console.log(error);
+  }
+    
+})
+
+// /api/user/loginuser verfies the input credentials with the db cred.
+router.post('/loginuser',async (req,res) =>{
+  try {
+      // console.log(req.body);
+      const user = await User.findOne({where :{email:req.body.email}})
+      if(user)
+        return res.status(200).json(user)
+      return res.status(400).json("Incorrect user credentials")
   } catch (error) {
     console.log(error);
   }

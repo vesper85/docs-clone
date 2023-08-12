@@ -32,12 +32,12 @@ User.init({
     sequelize // We need to pass the connection instanc
 })
 
-try {
-    await User.sync()
-    console.log('table synced');
-} catch (error) {
-    console.log(error);
-}
+// try {
+//     await User.sync()
+//     console.log('table synced');
+// } catch (error) {
+//     console.log(error);
+// }
 
 
 export default User

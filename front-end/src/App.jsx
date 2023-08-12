@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom';
 
 import './App.css'
-import { HStack, Link as CLink } from '@chakra-ui/react';
 
 
 
@@ -13,10 +12,10 @@ function App() {
 
   return (
     <>
-      <HStack spacing={'20px'} > 
-        <Link to={"/login"}>login</Link>
-        <Link to={"/signup"}>signup</Link>
-      </HStack>
+      <div className="flex justify-center h-100 mt-2">
+        <Link className='p-2 bg-slate-400 mx-5 rounded' to={"/login"}>login</Link>
+        <Link className='p-2 bg-slate-400 mx-5 rounded' to={"/signup"}>signup</Link>
+      </div>
     </>
   )
 }

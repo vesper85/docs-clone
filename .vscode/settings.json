@@ -17,6 +17,15 @@
             "name": "connect03",
             "username": "postgres",
             "database": "docs_store"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "connect04OS",
+            "database": "onlinesalesDB",
+            "username": "postgres"
         }
     ]
 }
