@@ -2,6 +2,8 @@
 import express from 'express';
 import cors from 'cors';
 import user from './routes/user.js'
+import document from './routes/document.js'
+
 
 const port = 3000
 
@@ -25,3 +27,4 @@ app.listen(port, ()=>{
 })
 
 app.use('/api/user',user)
+app.use('/api/document',document)

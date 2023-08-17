@@ -1,5 +1,7 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 export default function LoginCard() {
 
@@ -14,6 +16,7 @@ export default function LoginCard() {
     // console.log(cred);
   };
 
+  const navigate = useNavigate();
   const handleOnSubmit = async (e) => {
     e.preventDefault()
     console.log('onsubmit clicked');
@@ -30,10 +33,8 @@ export default function LoginCard() {
       })
       if(response.ok){
         console.log("User logged");
-        console.log(await response.json());
-        // redirect("/home")
+        navigate('/home')
       }
-      // console.log(await response);
     } catch (error) {
       console.log(error);
     }

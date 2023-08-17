@@ -1,10 +1,8 @@
 // const express = require('express');
 import {Router} from 'express'
-import pg from 'pg'
-import { Sequelize } from 'sequelize';
 import 'dotenv/config'
 import User from '../models/User.js';
-import sequelize from '../config/db.js';
+
 
 
 const router = Router();
