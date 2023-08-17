@@ -5,15 +5,6 @@
             "server": "localhost",
             "port": 5432,
             "driver": "PostgreSQL",
-            "name": "connect02",
-            "username": "postgres",
-            "database": "postgres"
-        },
-        {
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 5432,
-            "driver": "PostgreSQL",
             "name": "connect03",
             "username": "postgres",
             "database": "docs_store"
@@ -25,6 +16,15 @@
             "driver": "PostgreSQL",
             "name": "connect04OS",
             "database": "onlinesalesDB",
+            "username": "postgres"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "connect01",
+            "database": "docs_store",
             "username": "postgres"
         }
     ]

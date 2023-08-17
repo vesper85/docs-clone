@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import sequelize from "../config/db";
+import sequelize from "../config/db.js";
 
 class Document extends Model{};
 
@@ -11,11 +11,11 @@ class Document extends Model{};
 */
 
 Document.init({
-    createdBy:{
+    owner:{
         type:DataTypes.STRING
     },
     data:{
-        type:DataTypes.JSON
+        type:DataTypes.STRING
     }
 },{
     sequelize
