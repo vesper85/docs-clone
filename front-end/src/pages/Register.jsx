@@ -1,8 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { redirect } from "react-router-dom";
 
 export default function SignupCard() {
+  
+  // useEffect(() => {
+    
+  // }, [])
+  
+
+
+
   const [showPassword, setShowPassword] = useState(false);
   const [cred, setCred] = useState({
     email: "",

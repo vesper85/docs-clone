@@ -5,6 +5,7 @@ import './index.css'
 import { createRoutesFromElements, createBrowserRouter, Route, RouterProvider } from 'react-router-dom'
 import LoginCard from './pages/Login.jsx'
 import SignupCard from './pages/Register.jsx'
+import UserStates from './context/User/UserStates.jsx'
 
 
 
@@ -22,6 +23,8 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>   
+    <UserStates>
+    <RouterProvider router={router}/>  
+    </UserStates> 
   </React.StrictMode>,
 )

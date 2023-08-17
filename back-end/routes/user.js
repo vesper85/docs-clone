@@ -3,6 +3,7 @@ import {Router} from 'express'
 import 'dotenv/config'
 import User from '../models/User.js';
 import JWT from 'jsonwebtoken';
+import fetchuser from '../middleware/fetchuser.js'
 
 
 
@@ -10,12 +11,12 @@ const router = Router();
 
 
 // /api/user/getuser register user to pg db
-router.get('/getuser',async (req,res) =>{
+router.get('/getuser',fetchuser,async (req,res) =>{
   try {
-    console.log(req.header('user'));
+    console.log(req.user);
     // console.log('get user req endpoint');
     // const searched_user = await User.findOne({where:{email:}})
-    return res.status(200).json(req.header('user'))
+    return res.status(200).json(req.user)
   } catch (error) {
     console.log(error);
   }
