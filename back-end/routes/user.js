@@ -2,6 +2,7 @@
 import {Router} from 'express'
 import 'dotenv/config'
 import User from '../models/User.js';
+import JWT from 'jsonwebtoken';
 
 
 
@@ -25,9 +26,18 @@ router.get('/getuser',async (req,res) =>{
 router.post('/loginuser',async (req,res) =>{
   try {
       // console.log(req.body);
-      const user = await User.findOne({where :{email:req.body.email}})
-      if(user)
-        return res.status(200).json(user)
+      const currentUser = await User.findOne({where :{email:req.body.email}})
+      if(currentUser){
+        // implement pasword check here 
+        const data = {
+          user:{
+            id:currentUser.email
+          }
+        }
+        const key = process.env.JWTSECRETKEY
+        const jwt = JWT.sign(data,key)
+        return res.status(200).json(jwt)
+      }
       return res.status(400).json("Incorrect user credentials")
   } catch (error) {
     console.log(error);

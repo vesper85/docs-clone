@@ -33,7 +33,10 @@ export default function LoginCard() {
       })
       if(response.ok){
         console.log("User logged");
-        navigate('/home')
+        const jwtToken = await response.json();
+        localStorage.setItem("docs_store_token",jwtToken);
+        console.log(jwtToken);
+        navigate('/')
       }
     } catch (error) {
       console.log(error);
