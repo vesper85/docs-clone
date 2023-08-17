@@ -6,6 +6,7 @@ class Document extends Model{};
 // Document Schema
 /*
     createBy,
+    title,
     data,
 
 */
@@ -21,11 +22,11 @@ Document.init({
     sequelize
 })
 
-try {
-    await Document.sync()
-    console.log('table synced');
-} catch (error) {
-    console.log(error);
-}
+// try {
+//     await Document.sync()
+//     console.log('table synced');
+// } catch (error) {
+//     console.log(error);
+// }
 
 export default Document

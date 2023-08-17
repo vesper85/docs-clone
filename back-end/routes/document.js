@@ -4,18 +4,23 @@ import Document from "../models/Document.js";
 const router = Router()
 
 // /api/document/createdocument
-router.get('/createdocument',async(req,res)=>{
+router.get('/fetchdocument',async(req,res)=>{
     try {
-        console.log('create document endpoint');
-        const info = {
-            owner: "parikshit",
-            data:"this is the data"
-        }
-        const newDoc = await Document.create({
-            owner: info.owner,
-            data: info.data
-        })
+        // Document.findOne({
+        //     where:{req.header('title')}
+        // })
         res.status(200).send('get document')
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+
+router.post('/createdocument',async(req,res)=>{
+    try {
+        const data = req.body
+        await Document.create({...data});
+        res.status(200).send('Document created')
     } catch (error) {
         console.log(error);
     }
