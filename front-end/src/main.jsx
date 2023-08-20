@@ -6,6 +6,8 @@ import { createRoutesFromElements, createBrowserRouter, Route, RouterProvider } 
 import LoginCard from './pages/Login.jsx'
 import SignupCard from './pages/Register.jsx'
 import UserStates from './context/User/UserStates.jsx'
+import Document from './pages/Document.jsx'
+import AuthDoc from './components/AuthDoc.jsx'
 
 
 
@@ -17,6 +19,7 @@ const router = createBrowserRouter(
       <Route index element={<App/>} />
       <Route path='login' element={<LoginCard/>} />
       <Route path='signup' element={<SignupCard/>} />
+      <Route path='document/:docid' element={<AuthDoc><Document/></AuthDoc>} />
     </Route>
   )
 )

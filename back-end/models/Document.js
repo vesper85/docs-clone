@@ -15,18 +15,21 @@ Document.init({
     owner:{
         type:DataTypes.STRING
     },
+    title:{
+        type: DataTypes.STRING
+    },
     data:{
-        type:DataTypes.STRING
+        type:DataTypes.JSON
     }
 },{
     sequelize
 })
 
-// try {
-//     await Document.sync()
-//     console.log('table synced');
-// } catch (error) {
-//     console.log(error);
-// }
+try {
+    await Document.sync()
+    console.log('table synced');
+} catch (error) {
+    console.log(error);
+}
 
 export default Document

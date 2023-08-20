@@ -6,10 +6,13 @@ import React, { useState } from 'react'
 function UserStates({children}) {
     const [uid, setUid] = useState(null)
 
-    const [isLoggedin, setIsLoggedin] = useState(localStorage.getItem('docs_store_token') ? true : false)
+    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('docs_store_token') ? true : false)
 
     
     const initialize = async () =>{
+        
+        if(!isLoggedIn) return;
+        
         // fetch user and set user state if the auth-token is present in LS
         const token = localStorage.getItem('docs_store_token')
         const user = await fetchuserHandler(token);
@@ -37,8 +40,26 @@ function UserStates({children}) {
         }
         
     }
+
+    const handleDocCreate = () =>{
+        // button onclick -> GET fetch req to /createdoc api (save the doc file in db with default params) -> redirect to new doc path
+        try {
+            const response  = fetch(url,{
+                method: GET,
+                headers:{
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json',
+                    'auth-token':localStorage.getItem('docs_store_token')
+                }
+            })
+            // rediret to new page
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
   return (
-    <userContext.Provider value={{fetchuserHandler, initialize,isLoggedin, setIsLoggedin,uid}}>
+    <userContext.Provider value={{fetchuserHandler, initialize,isLoggedIn, setIsLoggedIn,uid}}>
         {children}
     </userContext.Provider>
   )

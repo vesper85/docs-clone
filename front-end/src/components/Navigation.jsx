@@ -5,9 +5,13 @@ import userContext from '../context/User/userContext';
 function Navigation() {
     const context = useContext(userContext);
 
-    const {isLoggedin,uid} = context;
+    const {isLoggedIn,uid,setIsLoggedIn} = context;
 
-
+    const handleLogout = (e) =>{
+        e.preventDefault();
+        localStorage.removeItem('docs_store_token')
+        setIsLoggedIn(false);
+    }
     
   return (
     <div>
@@ -39,17 +43,27 @@ function Navigation() {
             </div>
             <div className="flex basis-1/4 justify-end">
             {/* <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a> */}
-            <button
-                className={`px-3 mx-4 py-1.5 text-sm text-gray-700 duration-100 border rounded-lg hover:border-indigo-600 active:shadow-lg ${isLoggedin ? 'hidden': 'block'} `}>
-                <Link to={"/login"} >Log in</Link>
-            </button>
-            <button
-                className={`px-3 py-1.5 text-sm text-white duration-150 bg-indigo-600 rounded-lg hover:bg-indigo-700 active:shadow-lg ${isLoggedin ? 'hidden': 'block'}  `}>
-                <Link to={"/signup"} >Sign in</Link>
-            </button>
-            <div className={`${isLoggedin ? 'block' : 'hidden'}`}>
+           
+            {isLoggedIn ? 
+            
+            (<button
+                className={`px-3 py-1.5 text-sm text-white duration-150 bg-indigo-600 rounded-lg hover:bg-indigo-700 active:shadow-lg  `}>
+                <Link onClick={handleLogout} >Log out</Link>
+            </button>): 
+            (<>
+                <button
+                    className={`px-3 mx-4 py-1.5 text-sm text-gray-700 duration-100 border rounded-lg hover:border-indigo-600 active:shadow-lg `}>
+                    <Link to={"/login"} >Log in</Link>
+                </button>
+                <button
+                    className={`px-3 py-1.5 text-sm text-white duration-150 bg-indigo-600 rounded-lg hover:bg-indigo-700 active:shadow-lg  `}>
+                    <Link to={"/signup"} >Sign in</Link>
+                </button>
+            </>)}
+            
+            {/* <div className={`${isLoggedin ? 'block' : 'hidden'}`}>
                 Welcome {uid ? uid : "nouser"} 
-            </div>
+            </div> */}
             </div>
         </nav>
         </header>

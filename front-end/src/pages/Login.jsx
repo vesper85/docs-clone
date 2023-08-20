@@ -1,12 +1,16 @@
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import userContext from "../context/User/userContext";
 
 
 export default function LoginCard() {
-
-  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  
+  const context = useContext(userContext)
+
+  const {setIsLoggedIn} = context
   
   const [cred, setCred] = useState({
     email: "",
@@ -37,7 +41,8 @@ export default function LoginCard() {
         const jwtToken = await response.json();
         localStorage.setItem("docs_store_token",jwtToken);
         console.log(jwtToken);
-        navigate('/')
+        setIsLoggedIn(true);
+        navigate(from, { replace: true });
       }
     } catch (error) {
       console.log(error);
