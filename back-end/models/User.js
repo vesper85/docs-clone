@@ -29,8 +29,7 @@ User.init({
         type: DataTypes.STRING,
     },
     doc_ids:{
-        type:DataTypes.ARRAY(DataTypes.STRING),
-        default:["asdf","asdfs"]
+        type:DataTypes.ARRAY(DataTypes.STRING)
     }
 },{
     sequelize // We need to pass the connection instanc
