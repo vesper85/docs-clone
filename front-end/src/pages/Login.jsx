@@ -1,6 +1,6 @@
 
 import { useContext, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link,useLocation } from "react-router-dom";
 import userContext from "../context/User/userContext";
 
 
@@ -9,6 +9,7 @@ export default function LoginCard() {
   const [showPassword, setShowPassword] = useState(false);
   
   const context = useContext(userContext)
+  let location = useLocation();
 
   const {setIsLoggedIn} = context
   
@@ -42,6 +43,7 @@ export default function LoginCard() {
         localStorage.setItem("docs_store_token",jwtToken);
         console.log(jwtToken);
         setIsLoggedIn(true);
+        let from = location.state?.from?.pathname || "/";
         navigate(from, { replace: true });
       }
     } catch (error) {

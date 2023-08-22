@@ -20,6 +20,9 @@ Document.init({
     },
     data:{
         type:DataTypes.JSON
+    },
+    doc_id:{
+        type:DataTypes.STRING
     }
 },{
     sequelize

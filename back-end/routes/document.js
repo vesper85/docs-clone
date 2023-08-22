@@ -1,5 +1,8 @@
 import { Router } from "express";
 import Document from "../models/Document.js";
+import crypto from 'node:crypto'
+import fetchuser from "../middleware/fetchuser.js";
+import User from "../models/User.js";
 
 const router = Router()
 
@@ -16,11 +19,18 @@ router.get('/fetchdocument',async(req,res)=>{
 })
 
 
-router.post('/createdocument',async(req,res)=>{
+router.post('/createdocument',fetchuser,async(req,res)=>{
     try {
         const data = req.body
-        await Document.create({...data});
-        res.status(200).send('Document created')
+        const userId = req.user.id;
+        let newDocId = crypto.randomBytes(5).toString('hex')
+        
+        const newDoc = await Document.create({...data,"doc_id":newDocId});
+
+        const user = await User.findOne({where:{email:userId}})
+        // const newUser = await User.update({doc_ids:newDocId},{where:{email:userId}})
+        // console.log(newUser);
+        res.status(200).send(newDoc)
     } catch (error) {
         console.log(error);
     }

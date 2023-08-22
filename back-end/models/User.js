@@ -27,17 +27,21 @@ User.init({
     },
     password:{
         type: DataTypes.STRING,
+    },
+    doc_ids:{
+        type:DataTypes.ARRAY(DataTypes.STRING),
+        default:["asdf","asdfs"]
     }
 },{
     sequelize // We need to pass the connection instanc
 })
 
-// try {
-//     await User.sync()
-//     console.log('table synced');
-// } catch (error) {
-//     console.log(error);
-// }
+try {
+    await User.sync()
+    console.log('table synced');
+} catch (error) {
+    console.log(error);
+}
 
 
 export default User

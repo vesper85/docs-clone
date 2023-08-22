@@ -13,8 +13,6 @@ const router = Router();
 // /api/user/getuser register user to pg db
 router.get('/getuser',fetchuser,async (req,res) =>{
   try {
-    // console.log(req.user);
-    // console.log('get user req endpoint');
     // const searched_user = await User.findOne({where:{email:}})
     return res.status(200).json(req.user)
   } catch (error) {
@@ -26,7 +24,7 @@ router.get('/getuser',fetchuser,async (req,res) =>{
 // /api/user/loginuser verfies the input credentials with the db cred.
 router.post('/loginuser',async (req,res) =>{
   try {
-      // console.log(req.body);
+
       const currentUser = await User.findOne({where :{email:req.body.email}})
       if(currentUser){
         // implement pasword check here 

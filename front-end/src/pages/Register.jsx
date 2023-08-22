@@ -21,7 +21,7 @@ export default function SignupCard() {
 
   const handleOnChange = (e) => {
     setCred({ ...cred, [e.target.name]: e.target.value });
-    console.log(cred);
+    // console.log(cred);
   };
 
   const handleOnSubmit = async (e) => {

@@ -7,7 +7,7 @@ const fetchuser = (req,res,next)=>{
     }
     try {
         const key = process.env.JWTSECRETKEY
-        // console.log(key);
+
         const data = JWT.verify(JWTtoken,key)
         req.user = data.user;
         next();
