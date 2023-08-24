@@ -1,5 +1,6 @@
 import { DataTypes, Model, Sequelize } from "sequelize";
 import sequelize from "../config/db.js";
+import Document from "./Document.js";
 
 class User extends Model {};
 
@@ -24,23 +25,16 @@ User.init({
     },
     email:{
         type: DataTypes.STRING,
+        primaryKey:true
     },
     password:{
         type: DataTypes.STRING,
-    },
-    doc_ids:{
-        type:DataTypes.ARRAY(DataTypes.STRING)
     }
 },{
     sequelize // We need to pass the connection instanc
 })
 
-try {
-    await User.sync()
-    console.log('table synced');
-} catch (error) {
-    console.log(error);
-}
+
 
 
 export default User

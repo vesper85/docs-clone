@@ -1,7 +1,7 @@
 // const express = require('express');
 import {Router} from 'express'
 import 'dotenv/config'
-import User from '../models/User.js';
+import {User} from '../models/index.js';
 import JWT from 'jsonwebtoken';
 import fetchuser from '../middleware/fetchuser.js'
 

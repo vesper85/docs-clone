@@ -1,5 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/db.js";
+import User from "./User.js";
 
 class Document extends Model{};
 
@@ -12,9 +13,6 @@ class Document extends Model{};
 */
 
 Document.init({
-    owner:{
-        type:DataTypes.STRING
-    },
     title:{
         type: DataTypes.STRING
     },
@@ -28,11 +26,5 @@ Document.init({
     sequelize
 })
 
-try {
-    await Document.sync()
-    console.log('table synced');
-} catch (error) {
-    console.log(error);
-}
 
 export default Document

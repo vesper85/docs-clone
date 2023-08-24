@@ -60,12 +60,20 @@ function Sandbox() {
       }
     }
 
-
+    const handleEditorOnChange = (value) =>{
+      const isChange = editor.operations.some(op => 'set_selection' !== op.type)
+      if(isChange){
+        const content = JSON.stringify(value);
+        localStorage.setItem('docs_content',content)
+      }
+    }
 
   return (
-    <Slate editor={editor} initialValue={initialValue}>
+    <>
+    <Slate editor={editor} initialValue={initialValue} onChange={handleEditorOnChange}  >
       <Editable onKeyDown={handleKeyDown} renderElement={renderSlateElement} renderLeaf={renderLeaf} />
     </Slate>
+    </>
   )
 }
 

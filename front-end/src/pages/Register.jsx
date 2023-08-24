@@ -1,17 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 
 export default function SignupCard() {
-  
-  // useEffect(() => {
-    
-  // }, [])
-  
-
-
 
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   const [cred, setCred] = useState({
     email: "",
     first_name: "",
@@ -40,7 +34,8 @@ export default function SignupCard() {
       })
       if(response.ok){
         console.log("new user created");
-        redirect("/home")
+        let from = location.state?.from?.pathname || "/";
+        navigate(from, { replace: true });
       }
       // console.log(await response);
     } catch (error) {

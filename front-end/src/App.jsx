@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     // get the token if stored in localstorage
-    console.log(initialize());
+    initialize();
   }, [])
 
   
@@ -30,13 +30,12 @@ function App() {
         <Navigation/>
         {/* Mid Section - Create New Documents */}
         <div className="max-h-80 h-[16rem] bg-google-gray">
-            <div className="w-[50%] mx-auto h-full ">
-                <div>Starting a new document</div>
+            <div className="w-[50%] mx-auto h-full flex items-center">
                  <DocCrtBtn/>
             </div>
         </div>
         {/* Display all User documents */}
-        {/* <DocumentCollection/> */}
+        <DocumentCollection/>
       </main>
     </>
   )

@@ -47,16 +47,16 @@ function Navigation() {
             {isLoggedIn ? 
             
             (<button
-                className={`px-3 py-1.5 text-sm text-white duration-150 bg-indigo-600 rounded-lg hover:bg-indigo-700 active:shadow-lg  `}>
+                className={`px-3 py-1.5 text-sm text-white duration-150 bg-indigo-600 rounded-sm hover:bg-indigo-700 active:shadow-lg  `}>
                 <Link onClick={handleLogout} >Log out</Link>
             </button>): 
             (<>
                 <button
-                    className={`px-3 mx-4 py-1.5 text-sm text-gray-700 duration-100 border rounded-lg hover:border-indigo-600 active:shadow-lg `}>
+                    className={`px-3 mx-4 py-1.5 text-sm text-gray-700 duration-100 border rounded-sm hover:border-indigo-600 active:shadow-lg `}>
                     <Link to={"/login"} >Log in</Link>
                 </button>
                 <button
-                    className={`px-3 py-1.5 text-sm text-white duration-150 bg-indigo-600 rounded-lg hover:bg-indigo-700 active:shadow-lg  `}>
+                    className={`px-3 py-1.5 text-sm text-white duration-150 bg-indigo-600 rounded-sm hover:bg-indigo-700 active:shadow-lg  `}>
                     <Link to={"/signup"} >Sign in</Link>
                 </button>
             </>)}
