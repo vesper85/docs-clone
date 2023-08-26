@@ -25,7 +25,8 @@
             "driver": "PostgreSQL",
             "name": "connect01",
             "database": "docs_store",
-            "username": "postgres"
+            "username": "postgres",
+            "password": "qwerty"
         }
     ]
 }

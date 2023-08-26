@@ -29,9 +29,6 @@ router.post('/createdocument',fetchuser,async(req,res)=>{
 
         const user = await User.findOne({where:{email:userEmail}})
         const test = await user.getDocuments();
-        console.log(test);
-        // const newUser = await User.update({doc_ids:newDocId},{where:{email:userId}})
-        // console.log(newUser);
         res.status(200).send(newDoc)
     } catch (error) {
         console.log(error);
@@ -56,6 +53,21 @@ router.get('/fetchdocuments',fetchuser,async(req,res)=>{
 router.post('/updatedocument',fetchuser,async(req,res)=>{
     try {
         
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+router.delete("/deletedocument/:docid",async(req,res)=>{
+    try {
+        let docid = req.params.docid;
+        let doc = await Document.findOne({where:{doc_id:docid}})
+        if(!doc){
+            return res.status(400).send('bad request, document does not exist')
+        }else{
+            await doc.destroy({force:true})
+            return res.status(200).send('document deleted')
+        }
     } catch (error) {
         console.log(error);
     }

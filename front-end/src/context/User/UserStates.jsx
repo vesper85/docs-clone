@@ -13,6 +13,7 @@ function UserStates({children}) {
     const [uid, setUid] = useState(null)
 
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('docs_store_token') ? true : false)
+    const [userDocs, setUserDocs] = useState([1,2,3,4,5,6,7,8,9,10])
 
     
     const initialize = async () =>{
@@ -65,6 +66,24 @@ function UserStates({children}) {
         console.log(newDoc);
         navigate(`document/${newDoc.uid}`)
       }
+    
+    const fetchAllDocs = async() =>{
+        const url = "http://localhost:3000/api/document/fetchdocuments"
+        const response = await fetch(url,{
+            method:'GET',
+            headers:{
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+                'auth-token':localStorage.getItem('docs_store_token')
+            }
+        })
+        // console.log(await response.json());
+        const newarr = await response.json();
+        if(response.ok){
+            setUserDocs(newarr);
+            // console.log(userDocs);
+        }
+    }
 
     // const handleDocCreate = () =>{
     //     // button onclick -> GET fetch req to /createdoc api (save the doc file in db with default params) -> redirect to new doc path
@@ -103,7 +122,7 @@ function UserStates({children}) {
     //     }
     // }
   return (
-    <userContext.Provider value={{fetchuserHandler, initialize,isLoggedIn, setIsLoggedIn,uid}}>
+    <userContext.Provider value={{fetchuserHandler, initialize,isLoggedIn, setIsLoggedIn,uid,fetchAllDocs, userDocs}}>
         {children}
     </userContext.Provider>
   )
