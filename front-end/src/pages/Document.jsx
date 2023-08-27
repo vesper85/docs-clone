@@ -1,9 +1,31 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Sandbox from '../components/Sandbox'
+import SyncEditor from '../components/SyncEditor'
 import { useParams } from 'react-router-dom';
 import userContext from '../context/User/userContext';
 
 function Document() {
+
+
+  return (
+    <>
+      <div className='h-8 w-full bg-slate-500'> Tool bar</div>
+      <div className="mt-12 w-full h-full">
+        <div className="w-[80vw] mx-auto">
+          <input className="focus:border-0" value='Title of the Document' />
+          <SyncEditor />
+          {/* <br/>
+          <SyncEditor/> */}
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default Document
+
+
+
+
   // const context = useContext(userContext);
   // const [doc, setDoc] = useState({title:"asdf",data:"asdf",UserEmail:"sample"})
 
@@ -41,18 +63,3 @@ function Document() {
   // const disposeDoc = () =>{
   //   console.log("destroy");
   // }
-
-  return (
-    <>
-      <div className='h-8 w-full bg-slate-500'> Tool bar</div>
-      <div className="mt-12 w-full h-full">
-        <div className="w-[80vw] mx-auto">
-          <input className="focus:border-0" value='Title of the Document' />
-          <Sandbox />
-        </div>
-      </div>
-    </>
-  )
-}
-
-export default Document

@@ -50,9 +50,21 @@ router.get('/fetchdocuments',fetchuser,async(req,res)=>{
 
 
 // get the unique doc id -> verify if the document belongs to the user or not -> update the document
-router.post('/updatedocument',fetchuser,async(req,res)=>{
+router.put('/updatedocument/:docid',fetchuser,async(req,res)=>{
     try {
-        
+        let docid = req.params.docid;
+        let doc = await Document.findOne({where:{doc_id:docid}});
+        // ++add check if doc doesnot exists
+        if(!doc){
+            return res.status(400).send('bad request, document does not exist')
+        }else{
+            // add check for each param (title, data)
+            const {title, data} = req.body;
+            doc.title = title;
+            doc.data = data;
+            await doc.save();
+            return res.status(200).send("Document update successfull")
+        }
     } catch (error) {
         console.log(error);
     }

@@ -1,21 +1,26 @@
 import { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-
 import './App.css'
-import Card from './components/Card';
+
 import Navigation from './components/Navigation';
 import DocumentCollection from './components/DocumentCollection';
-import Sandbox from './components/Sandbox';
+
 import userContext from './context/User/userContext';
 import DocCrtBtn from './components/DocCrtBtn';
+import {io} from 'socket.io-client'
+
 
 
 
 function App() {
-  const [count, setCount] = useState({});
-  // const data  = awaitfetch('http://localhost:3000/api/user/createuser')
+  console.log("number of times");
+  
+  useEffect(()=>{
+    
+  },[])
+  
+
   const context = useContext(userContext)
-  const {fetchuserHandler, initialize} = context;
+  const { initialize} = context;
 
   useEffect(() => {
     // get the token if stored in localstorage
