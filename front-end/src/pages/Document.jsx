@@ -5,13 +5,15 @@ import userContext from '../context/User/userContext';
 
 function Document() {
 
-
+  const handleTitleChange = ()=>{
+    console.log("title changed");
+  }
   return (
     <>
       <div className='h-8 w-full bg-slate-500'> Tool bar</div>
       <div className="mt-12 w-full h-full">
         <div className="w-[80vw] mx-auto">
-          <input className="focus:border-0" value='Title of the Document' />
+          <input className="focus:border-0" value='Title of the Document' onChange={handleTitleChange}/>
           <SyncEditor />
           {/* <br/>
           <SyncEditor/> */}
