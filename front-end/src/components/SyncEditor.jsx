@@ -32,11 +32,11 @@ function Sandbox() {
       console.log("connected to the server",socket.id);
       socket.on("new-remote-ops",({EditorId,ops})=>{
         // if change is from remote editor the set state transmitted value
-        console.log("new-remote-operations triggered");
-      
+        
         if(EditorId != socket.id){
+          console.log("new-remote-operations triggered");
           console.log(EditorId,socket.id);
-          setTimeout(() => remote.current = true, 0);
+          remote.current = true;
           console.log(ops);
           // setInitialValue(data.ops)
           ops.forEach((op) => editor.apply(op))
@@ -106,16 +106,13 @@ function Sandbox() {
     const handleEditorOnChange = (opts) =>{
       setInitialValue(opts)
       const ops = editor.operations.filter(o => {
-        if(o)
-        
+        if(!o) return false
         return(
           o.type !== "set_selection" &&
           o.type !== "set_value"
           )
-        return false;
-      }).map((o) => ({ ...o, source: "one" }))
+      })
       
-      // console.log(ops);
     
       const isChange = editor.operations.some(op => 'set_selection' !== op.type)
       if(isChange && !remote.current){
@@ -123,7 +120,6 @@ function Sandbox() {
         // Change the states using operations dont use editor.children
         // emmit an editor-change event has the value params
         // 
-        console.log(ops);
         socket.emit("new-ops",{
           EditorId:socket.id,
           ops,
