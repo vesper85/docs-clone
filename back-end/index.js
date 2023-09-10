@@ -22,10 +22,14 @@ const io = new Server(httpServer,{
 
 io.on("connection",(socket)=>{
     console.log(socket.id);
+    socket.join("some-room")
+
     // if we get a new-ops event then broadcast it to everybody
     socket.on("new-ops",(data)=>{
-        console.log("new-ops server");
+        // console.log("new-ops server");
+        // socket.broadcast.emit("new-remote-ops",data)
         socket.broadcast.emit("new-remote-ops",data)
+        // console.log(data);
     })
 })
 

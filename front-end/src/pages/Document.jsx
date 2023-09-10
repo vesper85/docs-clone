@@ -5,15 +5,31 @@ import userContext from '../context/User/userContext';
 
 function Document() {
 
-  const handleTitleChange = ()=>{
+  const context = useContext(userContext);
+  const {docid} = useParams();
+  const {title,setTitle,saveDocument,fetchDoc} = context;
+
+  useEffect(() => {
+    console.log("This is a test");
+    fetchDoc(docid)
+    
+  }, [])
+  
+
+  const handleTitleChange = (e)=>{
     console.log("title changed");
+    setTitle(e.target.value)
   }
+
+
+  
   return (
     <>
       <div className='h-8 w-full bg-slate-500'> Tool bar</div>
       <div className="mt-12 w-full h-full">
+        <button className="px-8 py-4 bg-slate-400" onClick={()=>{saveDocument(docid)}}>Save Document</button>
         <div className="w-[80vw] mx-auto">
-          <input className="focus:border-0" value='Title of the Document' onChange={handleTitleChange}/>
+          <input className="focus:border-0" value={title} onChange={handleTitleChange}/>
           <SyncEditor />
           {/* <br/>
           <SyncEditor/> */}
@@ -39,28 +55,6 @@ export default Document
   //   return disposeDoc;
   // },[])
 
-
-  // const fetchDoc = async(docid) =>{
-  //   try {
-  //       const url = "http://localhost:3000/api/document/fetchdocument"
-  //       const response = await fetch(url, {
-  //           method:"GET",
-  //           headers: {
-  //               'Content-Type': 'application/json',
-  //               'accept': 'application/json',
-  //               'auth-token':localStorage.getItem('docs_store_token'),
-  //               'doc_id':docid
-  //             }
-  //       })
-  //       // console.log(await response.text());
-  //       const data = await response.json();
-  //       setDoc(data)
-  //       console.log(data);
-
-  //   } catch (error) {
-  //       console.log(error);
-  //   }
-  // }
 
   // const disposeDoc = () =>{
   //   console.log("destroy");

@@ -24,8 +24,6 @@ function DocCrtBtn() {
         })
     
         const newDoc = await response.json();
-        console.log(newDoc);
-        console.log(newDoc.data);
         navigate(`document/${newDoc.doc_id}`)
       }
 
