@@ -73,9 +73,17 @@ function Sandbox() {
     // }, DEFAULT_SAVE_TIME);
   }
 
+  const focusEditor = () =>{
+    editorRef.current.focus()
+  }
+
   return (
     <>
-        <Editor ref={editorRef} editorState={editorState} onChange={handleOnChange} handleKeyCommand={handleKeyCommand} />
+    <div style={{ height: '1100px' }}
+      className="bg-white shadow-md flex-shrink-0 cursor-text p-10 border-2 border-blue-600"
+      onClick={focusEditor}>
+        <Editor className="h-[500px]" ref={editorRef} editorState={editorState} onChange={handleOnChange} handleKeyCommand={handleKeyCommand} />
+    </div>
     </>
   )
 }

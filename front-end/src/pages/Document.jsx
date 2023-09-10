@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import SyncEditor from '../components/SyncEditor'
 import { useParams } from 'react-router-dom';
 import userContext from '../context/User/userContext';
+import EditorToolbar from '../components/EditorToolbar';
 
 function Document() {
 
@@ -27,9 +28,10 @@ function Document() {
     <>
       <div className='h-8 w-full bg-slate-500'> Tool bar</div>
       <div className="mt-12 w-full h-full">
-        <button className="px-8 py-4 bg-slate-400" onClick={()=>{saveDocument(docid)}}>Save Document</button>
         <div className="w-[80vw] mx-auto">
-          <input className="focus:border-0" value={title} onChange={handleTitleChange}/>
+          <input className="my-4 py-2 px-4 border-2 border-blue-600 focus:border-transparent
+" value={title} onChange={handleTitleChange}/>
+          <EditorToolbar saveDocument={saveDocument} docid={docid} />
           <SyncEditor />
           {/* <br/>
           <SyncEditor/> */}
