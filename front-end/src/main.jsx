@@ -8,6 +8,7 @@ import SignupCard from './pages/Register.jsx'
 import UserStates from './context/User/UserStates.jsx'
 import Document from './pages/Document.jsx'
 import AuthDoc from './components/AuthDoc.jsx'
+import EditorStates from './context/editor/EditorStates.jsx'
 
 
 
@@ -27,7 +28,9 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <UserStates>
-    <RouterProvider router={router}/>  
+      <EditorStates>
+        <RouterProvider router={router}/>  
+      </EditorStates>
     </UserStates> 
   </React.StrictMode>,
 )

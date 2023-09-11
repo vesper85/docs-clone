@@ -2,14 +2,18 @@ import React from 'react';
 
 const EditorToolbar = (props) => {
     const {saveDocument, docid} = props
+
+    const handleClick = (e) =>{
+      console.log(e.target.getAttribute('name'))
+    }
   return (
     <div className="bg-gray-100 p-2 shadow-md">
-      <div className="flex space-x-2">
-        <button className="p-2 text-gray-700 hover:text-black">
-          <i className="fas fa-bold"></i>
+      <div className="flex space-x-2" onClick={handleClick}>
+        <button  className="p-2 text-gray-700 hover:text-black">
+          <i className="fas fa-bold" name="bold" ></i>
         </button>
         <button className="p-2 text-gray-700 hover:text-black">
-          <i className="fas fa-italic"></i>
+          <i className="fas fa-italic" name="italic"></i>
         </button>
         <button className="p-2 text-gray-700 hover:text-black">
           <i className="fas fa-underline"></i>

@@ -3,20 +3,20 @@ import SyncEditor from '../components/SyncEditor'
 import { useParams } from 'react-router-dom';
 import userContext from '../context/User/userContext';
 import EditorToolbar from '../components/EditorToolbar';
+import editorContext from '../context/editor/editorContext';
 
 function Document() {
 
   const context = useContext(userContext);
+  const editorCon = useContext(editorContext)
   const {docid} = useParams();
-  const {title,setTitle,saveDocument,fetchDoc} = context;
-
+  const {saveDocument,fetchDoc,title,setTitle} = editorCon;
+  
   useEffect(() => {
     console.log("This is a test");
     fetchDoc(docid)
     
   }, [])
-  
-
   const handleTitleChange = (e)=>{
     console.log("title changed");
     setTitle(e.target.value)
